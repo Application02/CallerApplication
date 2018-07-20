@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/backgroundoutgoing"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back6"
+   >
+
+    <TextView
+        android:id="@+id/txtNameOutgoing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:hint="Keshu odedara"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtNumberOutgoing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtNameOutgoing"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"
+        android:hint="+919624649521" />
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/txtCountTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtNumber"
+        android:layout_centerHorizontal="true"
+        android:text="ac"
+        android:textSize="25sp" />
+
+    <ImageView
+        android:id="@+id/btnMicro_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtCountTime"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/imagesround"
+        android:src="@drawable/muted" />
+
+    <ImageView
+        android:id="@+id/btnDialer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtCountTime"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/imagesround"
+        android:src="@drawable/keywhite" />
+
+    <ImageView
+        android:id="@+id/btnSpeaker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/txtCountTime"
+        android:layout_marginRight="85dp"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/imagesround"
+        android:src="@drawable/speaker" />
+
+    <ImageView
+        android:id="@+id/btnContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnMicro_phone"
+        android:layout_marginLeft="85dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/imagesround"
+        android:src="@drawable/contact" />
+
+    <ImageView
+        android:id="@+id/btnCallReject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="94dp"
+        android:src="@drawable/end_call" />
+</RelativeLayout>

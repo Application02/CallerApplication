@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    <item
+        android:id="@+id/action_favorites"
+        android:icon="@drawable/favourites"
+        android:title="favorites" />-->
+    <item
+        android:id="@+id/action_recents"
+        android:icon="@drawable/recent"
+        android:title="Recents" />
+    <item
+        android:id="@+id/action_contacts"
+        android:icon="@drawable/contact_normal"
+        android:state_checked="true"
+        android:title="contacts" />
+    <item
+        android:id="@+id/action_keypad"
+        android:icon="@drawable/keypad"
+        android:title="keypad" />
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/settings"
+        android:title="settings" />
+</menu>

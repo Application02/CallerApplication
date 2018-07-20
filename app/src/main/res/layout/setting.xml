@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
+<!--
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="top|center"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp">
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="background"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:gravity="right"
+            android:id="@+id/btnpriority"
+            android:layout_marginLeft="210dp"
+            android:layout_width="wrap_content"
+            android:textAllCaps="false"
+            android:text="Select >"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:background="#00f7f6f6"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <GridView
+
+        android:id="@+id/gridview"
+        android:numColumns="3"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+    </GridView>
+
+
+
+</LinearLayout>-->
