@@ -35,8 +35,9 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="8dp"
-            android:onClick="buttonClickEvent"
+
             android:src="@drawable/delete" />
+        <!--android:onClick="buttonClickEvent"-->
     </RelativeLayout>
 
     <RelativeLayout
@@ -55,9 +56,10 @@
             android:layout_marginLeft="45dp"
             android:layout_marginStart="45dp"
             android:background="@drawable/btnstyle"
-            android:onClick="buttonClickEvent"
+
             android:text="1"
             android:textSize="30sp" />
+    <!--    android:onClick="buttonClickEvent"-->
 
         <Button
             android:id="@+id/btnTwo"
@@ -66,9 +68,10 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/btnstyle"
-            android:onClick="buttonClickEvent"
+
             android:text="2"
             android:textSize="30sp" />
+       <!-- android:onClick="buttonClickEvent"-->
 
         <Button
             android:id="@+id/btnThree"
@@ -80,9 +83,10 @@
             android:layout_marginEnd="45dp"
             android:layout_marginRight="45dp"
             android:background="@drawable/btnstyle"
-            android:onClick="buttonClickEvent"
+
             android:text="3"
             android:textSize="30sp" />
+       <!-- android:onClick="buttonClickEvent"-->
 
     </RelativeLayout>
 
@@ -102,9 +106,10 @@
             android:layout_marginLeft="45dp"
             android:layout_marginStart="45dp"
             android:background="@drawable/btnstyle"
-            android:onClick="buttonClickEvent"
+
             android:text="4"
             android:textSize="30sp" />
+    <!--    android:onClick="buttonClickEvent"-->
 
         <Button
             android:id="@+id/btnFive"
@@ -113,9 +118,10 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/btnstyle"
-            android:onClick="buttonClickEvent"
+
             android:text="5"
             android:textSize="30sp" />
+        <!--android:onClick="buttonClickEvent"-->
 
         <Button
             android:id="@+id/btnSix"
@@ -127,9 +133,10 @@
             android:layout_marginEnd="45dp"
             android:layout_marginRight="45dp"
             android:background="@drawable/btnstyle"
-            android:onClick="buttonClickEvent"
+
             android:text="6"
             android:textSize="30sp" />
+        <!--android:onClick="buttonClickEvent"-->
 
     </RelativeLayout>
 
@@ -149,9 +156,10 @@
             android:layout_marginLeft="45dp"
             android:layout_marginStart="45dp"
             android:background="@drawable/btnstyle"
-            android:onClick="buttonClickEvent"
+
             android:text="7"
             android:textSize="30sp" />
+        <!--android:onClick="buttonClickEvent"-->
 
         <Button
             android:id="@+id/btnEight"
@@ -160,9 +168,10 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/btnstyle"
-            android:onClick="buttonClickEvent"
+
             android:text="8"
             android:textSize="30sp" />
+        <!--android:onClick="buttonClickEvent"-->
 
         <Button
             android:id="@+id/btnNine"
@@ -174,9 +183,10 @@
             android:layout_marginEnd="45dp"
             android:layout_marginRight="45dp"
             android:background="@drawable/btnstyle"
-            android:onClick="buttonClickEvent"
+
             android:text="9"
             android:textSize="30sp" />
+        <!--android:onClick="buttonClickEvent"-->
 
     </RelativeLayout>
 
@@ -196,9 +206,10 @@
             android:layout_marginLeft="45dp"
             android:layout_marginStart="45dp"
             android:background="@drawable/btnstyle"
-            android:onClick="buttonClickEvent"
+
             android:text="*"
             android:textSize="30sp" />
+       <!-- android:onClick="buttonClickEvent"-->
 
         <Button
             android:id="@+id/btnZero"
@@ -207,9 +218,10 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:background="@drawable/btnstyle"
-            android:onClick="buttonClickEvent"
+
             android:text="0"
             android:textSize="30sp" />
+        <!--android:onClick="buttonClickEvent"-->
 
         <Button
             android:id="@+id/btnHash"
@@ -221,9 +233,11 @@
             android:layout_marginEnd="45dp"
             android:layout_marginRight="45dp"
             android:background="@drawable/btnstyle"
-            android:onClick="buttonClickEvent"
+
             android:text="#"
             android:textSize="30sp" />
+
+        <!--android:onClick="buttonClickEvent"-->
     </RelativeLayout>
 
     <LinearLayout
@@ -235,8 +249,11 @@
             android:id="@+id/btnCall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="buttonClickEvent"
-            android:src="@drawable/accept_call" />
+
+            android:src="@drawable/accept_call"
+            android:contentDescription="@string/todo" />
+
+       <!-- android:onClick="buttonClickEvent"-->
     </LinearLayout>
 
 </LinearLayout>
