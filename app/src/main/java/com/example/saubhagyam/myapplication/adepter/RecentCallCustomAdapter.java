@@ -1,6 +1,7 @@
 package com.example.saubhagyam.myapplication.adepter;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,6 +10,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +62,7 @@ public class RecentCallCustomAdapter extends BaseAdapter {
         return 0;
     }
 
+    @SuppressLint({"InflateParams", "SetTextI18n"})
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
@@ -68,15 +71,16 @@ public class RecentCallCustomAdapter extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            assert inflater != null;
             convertView = inflater.inflate(R.layout.recent_call_row, null, true);
-            holder.txtFirstChar = (TextView) convertView.findViewById(R.id.txtFirstCharecter);
-            holder.txtNumber = (TextView) convertView.findViewById(R.id.number);
-            holder.txtName = (TextView) convertView.findViewById(R.id.txtName);
-            holder.txtTime = (TextView) convertView.findViewById(R.id.txtTimeAndDate);
-            holder.txtCallTimeDuration = (TextView) convertView.findViewById(R.id.txtCallTimeDuration);
-            holder.linearLayout = (LinearLayout) convertView.findViewById(R.id.linearLayoutCall);
-            holder.imgCallType = (ImageView) convertView.findViewById(R.id.imgCallType);
-            holder.txtFirstChar.setBackgroundColor(getMatColor("600"));
+            holder.txtFirstChar =  convertView.findViewById(R.id.txtFirstCharecter);
+            holder.txtNumber =  convertView.findViewById(R.id.txtRecentnumber);
+            holder.txtName =  convertView.findViewById(R.id.txtRecentName);
+            holder.txtTime =  convertView.findViewById(R.id.txtTimeAndDate);
+            holder.txtCallTimeDuration =  convertView.findViewById(R.id.txtCallTimeDuration);
+            holder.linearLayout =  convertView.findViewById(R.id.linearLayoutCall);
+            holder.imgCallType =  convertView.findViewById(R.id.imgCallType);
+            holder.txtFirstChar.setBackgroundColor(getMatColor());
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -100,19 +104,38 @@ public class RecentCallCustomAdapter extends BaseAdapter {
         holder.txtTime.setText(contactModelArrayList.get(position).getTime());
         holder.txtNumber.setText(contactModelArrayList.get(position).getNumber());
         holder.txtName.setText(contactModelArrayList.get(position).getName());
-        try {
+
+
+        Log.e(TAG, "getView: "+ contactModelArrayList.get(position).getNumber());
+
+        if (holder.txtName.getText().length() == 0)
+        {
+            holder.txtName.setText("UnKnown");
+        }
+
+/*        if (contactModelArrayList.get(position).getNumber() == null)
+        {
+            holder.txtNumber.setText("No Number Found!");
+        }*/
+
+
+/*        try {
             holder.txtFirstChar.setText(contactModelArrayList.get(position).getName().toUpperCase().charAt(0) + "");
 
         } catch (Exception e) {
 
-        }
+        }*/
         try {
-            if (contactModelArrayList.get(position).getCalltype().equals("2")) {
-                holder.imgCallType.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_list_outgoing));
-            } else if (contactModelArrayList.get(position).getCalltype().equals("1")) {
-                holder.imgCallType.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_list_incoming));
-            } else {
-                holder.imgCallType.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_missedcall));
+            switch (contactModelArrayList.get(position).getCalltype()) {
+                case "2":
+                    holder.imgCallType.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_list_outgoing));
+                    break;
+                case "1":
+                    holder.imgCallType.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_list_incoming));
+                    break;
+                default:
+                    holder.imgCallType.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_missedcall));
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -122,10 +145,10 @@ public class RecentCallCustomAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private int getMatColor(String typeColor) {
+    private int getMatColor() {
 
         int returnColor = Color.BLACK;
-        int arrayId = context.getResources().getIdentifier("mdcolor_" + typeColor, "array", context.getPackageName());
+        int arrayId = context.getResources().getIdentifier("mdcolor_" + "600", "array", context.getPackageName());
 
         if (arrayId != 0) {
             TypedArray colors = context.getResources().obtainTypedArray(arrayId);
@@ -138,8 +161,8 @@ public class RecentCallCustomAdapter extends BaseAdapter {
 
 
     private class ViewHolder {
-        protected LinearLayout linearLayout;
-        protected TextView txtFirstChar, txtNumber, txtName, txtTime, txtCallTimeDuration;
+        LinearLayout linearLayout;
+        TextView txtFirstChar, txtNumber, txtName, txtTime, txtCallTimeDuration;
         protected ImageView imgCallType;
     }
 

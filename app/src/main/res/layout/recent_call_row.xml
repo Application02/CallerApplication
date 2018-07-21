@@ -41,21 +41,21 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtName"
+                    android:id="@+id/txtRecentName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:singleLine="true"
-                    android:text="UnKnown"
+                    android:hint="UnKnown"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/number"
+                    android:id="@+id/txtRecentnumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="+919624649521"
+                    android:hint="+919624649521"
                     android:textSize="15sp" />
 
             </LinearLayout>

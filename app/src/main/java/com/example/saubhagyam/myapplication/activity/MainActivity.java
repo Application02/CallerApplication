@@ -51,9 +51,6 @@ public class MainActivity extends AppCompatActivity {
     private Menu menu;
     SearchView searchView;
 
-
-    //changes commited!!!!!
-
   /*  private static final String INSTALL_SCRIPT =
             "mount -o rw,remount /system\n" +
                     "cat %s > /system/priv-app/RemoteDroid.apk.tmp\n" +
@@ -74,10 +71,29 @@ public class MainActivity extends AppCompatActivity {
 
         //Run Time Permission
 
+
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.READ_CONTACTS, android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.READ_SMS, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CALL_PHONE, android.Manifest.permission.CALL_PRIVILEGED}, 100);
+            if (!Settings.canDrawOverlays(this)) { // WHAT IF THIS EVALUATES TO FALSE.
+                // if not construct intent to request permission
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                        Uri.parse("package:" + getPackageName()));
+                // request permission via start activity for result
+                startActivity(intent);
+                initiliazation();
+            } else { // ADD THIS.
+
+                initiliazation();
+                // Add code to bind and start the service directly.
+               /* try {
+                    Settings.canDrawOverlays(this);
+                }
+                catch(NoSuchMethodError e){
+                    e.printStackTrace();
+                }*/
+            }
         }
-    
 
 
       /*  String.format(INSTALL_SCRIPT, new String[] {
@@ -97,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             frag = Objects.requireNonNull(intent.getExtras()).getString("frag");
             Log.e(TAG, "Fragment: " + frag);
 
-        } catch (Exception e) {
+        } catch (NullPointerException  e) {
             e.printStackTrace();
         }
 
@@ -165,25 +181,10 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(this)) { // WHAT IF THIS EVALUATES TO FALSE.
-                // if not construct intent to request permission
-                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                        Uri.parse("package:" + getPackageName()));
-                // request permission via start activity for result
-                startActivity(intent);
-                initiliazation();
-            } else { // ADD THIS.
-
-                initiliazation();
-                // Add code to bind and start the service directly.
-               /* try {
-                    Settings.canDrawOverlays(this);
-                }
-                catch(NoSuchMethodError e){
-                    e.printStackTrace();
-                }*/
-            }
+            requestPermissions(new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.READ_CONTACTS, android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.READ_SMS, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CALL_PHONE, android.Manifest.permission.CALL_PRIVILEGED}, 100);
         }
+
+
 
         /* initiliazation();*/
     }
@@ -232,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+
         return super.onCreateOptionsMenu(menu);
 
     }
