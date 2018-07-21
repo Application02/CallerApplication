@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
     private Menu menu;
     SearchView searchView;
 
+
+    //changes commited!!!!!
+
   /*  private static final String INSTALL_SCRIPT =
             "mount -o rw,remount /system\n" +
                     "cat %s > /system/priv-app/RemoteDroid.apk.tmp\n" +
@@ -74,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.READ_CONTACTS, android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.READ_SMS, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CALL_PHONE, android.Manifest.permission.CALL_PRIVILEGED}, 100);
         }
+    
 
 
       /*  String.format(INSTALL_SCRIPT, new String[] {
