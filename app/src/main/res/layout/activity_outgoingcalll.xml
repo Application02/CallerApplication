@@ -63,7 +63,7 @@
         android:layout_marginRight="85dp"
         android:layout_marginTop="75dp"
         android:background="@drawable/imagesround"
-        android:src="@drawable/speaker" />
+        android:src="@drawable/speakerwhite" />
 
     <ImageView
         android:id="@+id/btnContact"

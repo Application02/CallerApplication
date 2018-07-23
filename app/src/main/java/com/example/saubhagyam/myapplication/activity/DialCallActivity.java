@@ -3,9 +3,6 @@ package com.example.saubhagyam.myapplication.activity;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,7 +11,6 @@ import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.CallLog;
 import android.provider.ContactsContract;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -27,16 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.saubhagyam.myapplication.R;
-import com.example.saubhagyam.myapplication.database.DatabaseHelper;
-import com.example.saubhagyam.myapplication.database.Note;
-import com.example.saubhagyam.myapplication.fragment.DialerFragment;
-import com.example.saubhagyam.myapplication.fragment.GetAllContactFragment;
-import com.example.saubhagyam.myapplication.fragment.SettingFragment;
 import com.example.saubhagyam.myapplication.model.ContactModel;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -287,9 +277,13 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
 
         if (!audioManager.isMicrophoneMute()) {
             audioManager.setMicrophoneMute(true);
+
+            btnMicroPhone.setImageResource(R.drawable.unmuted);
+
             Log.e(TAG, "microphone on ");
         } else {
             audioManager.setMicrophoneMute(false);
+            btnMicroPhone.setImageResource(R.drawable.muted);
             Log.e(TAG, "microphone off");
 
         }
@@ -298,9 +292,11 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
 
     private void onpenDialer() {
 
+
         //open main activity dialer fragment
         Intent in = new Intent(this, MainActivity.class);
         startActivityForResult(in, REQ_CODE);
+
 
         /*btnDialer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -351,6 +347,9 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
                     getSystemService(Context.AUDIO_SERVICE);
             audioManager.setMode(AudioManager.MODE_IN_CALL);
             audioManager.setSpeakerphoneOn(true);
+
+            btnSpeaker.setImageResource(R.drawable.speakerblue);
+
             Toast.makeText(DialCallActivity.this, "Speaker On", Toast.LENGTH_SHORT).show();
         } else {
             isOn = true;
@@ -358,6 +357,7 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
                     getSystemService(Context.AUDIO_SERVICE);
             audioManager.setMode(AudioManager.MODE_IN_CALL);
             audioManager.setSpeakerphoneOn(false);
+            btnSpeaker.setImageResource(R.drawable.speakerwhite);
             Toast.makeText(DialCallActivity.this, "Speaker Off", Toast.LENGTH_SHORT).show();
 
         }
