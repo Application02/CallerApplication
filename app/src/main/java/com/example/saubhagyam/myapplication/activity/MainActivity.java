@@ -51,16 +51,6 @@ public class MainActivity extends AppCompatActivity {
     private Menu menu;
     SearchView searchView;
 
-  /*  private static final String INSTALL_SCRIPT =
-            "mount -o rw,remount /system\n" +
-                    "cat %s > /system/priv-app/RemoteDroid.apk.tmp\n" +
-                    "chmod 644 /system/priv-app/RemoteDroid.apk.tmp\n" +
-                    "pm uninstall %s\n" +
-                    "mv /system/priv-app/RemoteDroid.apk.tmp /system/priv-app/RemoteDroid.apk\n" +
-                    "pm install -r /system/priv-app/RemoteDroid.apk\n" +
-                    "sleep 5\n" +
-                    "am start -n in.tosc.remotedroid.app/.MainActivity";
-*/
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -96,17 +86,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-      /*  String.format(INSTALL_SCRIPT, new String[] {
-                MainActivity.this.getPackageCodePath(),
-                MainActivity.this.getPackageName()
-        });
-*/
-
-
- /*       Shell.SU.run(String.format(INSTALL_SCRIPT, new String[] {
-                MainActivity.this.getPackageCodePath(),
-                MainActivity.this.getPackageName()
-        }));*/
         try {
             Intent intent = getIntent();
 
@@ -139,28 +118,7 @@ public class MainActivity extends AppCompatActivity {
         // initiliazation();
 
 
-     /*   TelephonyManager telephonyManager =
-                (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
 
-        PhoneStateListener callStateListener = new PhoneStateListener() {
-            public void onCallStateChanged(int state, String incomingNumber)
-            {
-                if(state==TelephonyManager.CALL_STATE_RINGING){
-                    Toast.makeText(getApplicationContext(),"Phone Is Riging",
-                            Toast.LENGTH_LONG).show();
-                }
-                if(state==TelephonyManager.CALL_STATE_OFFHOOK){
-                    Toast.makeText(getApplicationContext(),"Phone is Currently in A call",
-                            Toast.LENGTH_LONG).show();
-                }
-
-                if(state==TelephonyManager.CALL_STATE_IDLE){
-                    Toast.makeText(getApplicationContext(),"phone is neither ringing nor in a call",
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-        };
-        telephonyManager.listen(callStateListener,PhoneStateListener.LISTEN_CALL_STATE);*/
 
     }
 
@@ -183,9 +141,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.READ_CONTACTS, android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.READ_SMS, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CALL_PHONE, android.Manifest.permission.CALL_PRIVILEGED}, 100);
         }
-
-
-
+        
         /* initiliazation();*/
     }
 
