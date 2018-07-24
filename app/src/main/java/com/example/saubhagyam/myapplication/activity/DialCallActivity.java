@@ -3,21 +3,31 @@ package com.example.saubhagyam.myapplication.activity;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.provider.ContactsContract;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +35,8 @@ import android.widget.Toast;
 import com.example.saubhagyam.myapplication.R;
 import com.example.saubhagyam.myapplication.model.ContactModel;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -42,8 +54,15 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
     long starttime = 0;
     private ArrayList<ContactModel> contactModelArrayList;
     android.support.v4.app.FragmentTransaction ft;
+    ContactModel contactModel;
+
+    static ImageView imageView;
 
     public static final int REQ_CODE = 1;
+
+    //timer
+    private Chronometer chronometer;
+    private boolean isStart;
 
 /*    //for name print
     private DatabaseHelper db;
@@ -52,7 +71,7 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
 
     String channel;
 
-    RelativeLayout relativeLayout1;
+    LinearLayout relativeLayout1;
     SharedPreferences sharedpreferences;
     public static final String mypreference = "mypref";
 
@@ -82,16 +101,43 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
 
         relativeLayout1 = findViewById(R.id.backgroundoutgoing);
 
+        imageView = findViewById(R.id.imageView);
+        //code for timer
+        chronometer = findViewById(R.id.chronometer);
+        chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
+            @Override
+            public void onChronometerTick(Chronometer chronometerChanged) {
+                chronometer = chronometerChanged;
+            }
+        });
+        startStopChronometer();
+
+
+
 
         sharedpreferences = getApplicationContext().getSharedPreferences(mypreference,
                 Context.MODE_PRIVATE);
 
         channel = (sharedpreferences.getString(themecoloor, ""));
 
-        BackgroundImageChange();
+
 
         initialization();
+        BackgroundImageChange();
 
+    }
+
+    public void startStopChronometer(){
+        if(isStart){
+            chronometer.stop();
+            isStart = false;
+
+        }else{
+            chronometer.setBase(SystemClock.elapsedRealtime());
+            chronometer.start();
+            isStart = true;
+
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -103,13 +149,17 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
             String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-            ContactModel contactModel = new ContactModel();
+            String uri = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
+
+             contactModel = new ContactModel();
             contactModel.setName(name);
             contactModel.setNumber(phoneNumber);
+            contactModel.setUri(uri);
             contactModelArrayList.add(contactModel);
 
             System.out.println("contactModel.setName" + name);
             System.out.println("contactModel.setNumber" + phoneNumber);
+            System.out.println("contactModel.setUri" + uri);
 
         }
         phones.close();
@@ -119,65 +169,117 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
     private void BackgroundImageChange() {
         final int sdk = android.os.Build.VERSION.SDK_INT;
 
-        if (channel.equals("") || channel.equals(" ")) {
-            if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back6));
-            } else {
-                relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back6));
+
+
+
+            if (channel.equals("") || channel.equals(" ")) {
+                if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back1));
+                } else {
+                    relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back1));
+                }
+
+            } else if (channel.equals("1")) {
+                if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back1));
+                } else {
+                    relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back1));
+                }
+
+            } else if (channel.equals("2")) {
+                if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back2));
+                } else {
+                    relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back2));
+                }
+            } else if (channel.equals("3")) {
+                if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back3));
+                } else {
+                    relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back3));
+                }
+            } else if (channel.equals("4")) {
+                if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back4));
+                } else {
+                    relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back4));
+                }
+            } else if (channel.equals("5")) {
+                if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back5));
+                } else {
+                    relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back5));
+                }
+            } else if (channel.equals("6")) {
+                if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back6));
+                } else {
+                    relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back6));
+                }
+            } else if (channel.equals("7")) {
+                if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back7));
+                } else {
+                    relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back7));
+                }
+            } else if (channel.equals("8")) {
+                if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                    relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back8));
+                } else {
+                    relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back8));
+                }
             }
 
-        } else if (channel.equals("1")) {
-            if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back1));
-            } else {
-                relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back1));
-            }
 
-        } else if (channel.equals("2")) {
-            if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back2));
-            } else {
-                relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back2));
-            }
-        } else if (channel.equals("3")) {
-            if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back3));
-            } else {
-                relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back3));
-            }
-        } else if (channel.equals("4")) {
-            if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back4));
-            } else {
-                relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back4));
-            }
-        } else if (channel.equals("5")) {
-            if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back5));
-            } else {
-                relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back5));
-            }
-        } else if (channel.equals("6")) {
-            if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back6));
-            } else {
-                relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back6));
-            }
-        } else if (channel.equals("7")) {
-            if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back7));
-            } else {
-                relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back7));
-            }
-        } else if (channel.equals("8")) {
-            if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                relativeLayout1.setBackgroundDrawable(getResources().getDrawable(R.drawable.back8));
-            } else {
-                relativeLayout1.setBackground(getResources().getDrawable(R.drawable.back8));
-            }
         }
 
+
+    public Bitmap retrieveContactPhoto(Context context, String number) {
+        ContentResolver contentResolver = context.getContentResolver();
+        String contactId = null;
+        Uri uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
+
+        String[] projection = new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME, ContactsContract.PhoneLookup._ID};
+
+        Cursor cursor =
+                contentResolver.query(
+                        uri,
+                        projection,
+                        null,
+                        null,
+                        null);
+
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                contactId = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.PhoneLookup._ID));
+            }
+            cursor.close();
+        }
+
+        Bitmap photo = BitmapFactory.decodeResource(context.getResources(),
+                R.drawable.back6);
+
+        try {
+            InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(),
+                    ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, new Long(contactId)));
+
+            if (inputStream != null) {
+                photo = BitmapFactory.decodeStream(inputStream);
+            }
+
+            assert inputStream != null;
+            inputStream.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        BitmapDrawable ob = new BitmapDrawable(getResources(), photo);
+        imageView.setBackgroundDrawable(ob);
+
+        Log.d(TAG, "retrieveContactPhoto: "+photo);
+        return photo;
     }
+
 
     private void initialization() {
 
@@ -196,12 +298,16 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
         btnContact = (ImageView) findViewById(R.id.btnContact);
         btnContact.setOnClickListener(this);
 
-        text3 = (TextView) findViewById(R.id.txtCountTime);
+      //  text3 = (TextView) findViewById(R.id.txtCountTime);
 
 
         Intent intent = getIntent();
 
         txtNumber.setText(intent.getStringExtra("number"));
+
+
+        //get image in bitmap
+        //retrieveContactPhoto(this,intent.getStringExtra("number"));
 
         String temp = intent.getStringExtra("number").trim();
         String temp1 = intent.getStringExtra("number").trim();
@@ -278,11 +384,13 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
         if (!audioManager.isMicrophoneMute()) {
             audioManager.setMicrophoneMute(true);
 
+            btnMicroPhone.setBackgroundResource(R.drawable.imagesroundblue);
             btnMicroPhone.setImageResource(R.drawable.unmuted);
 
             Log.e(TAG, "microphone on ");
         } else {
             audioManager.setMicrophoneMute(false);
+            btnMicroPhone.setBackgroundResource(R.drawable.imagesround);
             btnMicroPhone.setImageResource(R.drawable.muted);
             Log.e(TAG, "microphone off");
 
@@ -347,6 +455,7 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
                     getSystemService(Context.AUDIO_SERVICE);
             audioManager.setMode(AudioManager.MODE_IN_CALL);
             audioManager.setSpeakerphoneOn(true);
+            btnSpeaker.setBackgroundResource(R.drawable.imagesroundblue);
 
             btnSpeaker.setImageResource(R.drawable.speakerblue);
 
@@ -358,6 +467,7 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
             audioManager.setMode(AudioManager.MODE_IN_CALL);
             audioManager.setSpeakerphoneOn(false);
             btnSpeaker.setImageResource(R.drawable.speakerwhite);
+            btnSpeaker.setBackgroundResource(R.drawable.imagesround);
             Toast.makeText(DialCallActivity.this, "Speaker Off", Toast.LENGTH_SHORT).show();
 
         }

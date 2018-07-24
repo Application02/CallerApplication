@@ -1,8 +1,20 @@
 package com.example.saubhagyam.myapplication.model;
 
-public class ContactModel {
+import android.net.Uri;
 
-    private String name, number;
+public  class ContactModel {
+
+     private String name, number,uri;
+
+     private String id;
+
+    public  String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -18,5 +30,13 @@ public class ContactModel {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 }

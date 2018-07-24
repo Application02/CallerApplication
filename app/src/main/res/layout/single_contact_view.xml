@@ -24,6 +24,7 @@
             android:textSize="15sp" />-->
 
         <com.libRG.CustomTextView
+            android:visibility="visible"
             android:id="@+id/txtFirstCharecter"
             android:layout_width="35dp"
             android:layout_height="35dp"
@@ -36,6 +37,31 @@
             app:lib_setRoundedView="true"
             app:lib_setShape="oval"
             app:lib_setStrokeWidth="0dp" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/imageview1"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            app:civ_border_width="0.01dp"
+            app:civ_border_color="#FF000000"/>
+
+<!--        <ImageView
+            android:visibility="visible"
+            android:id="@+id/imageview1"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/rounded_rectangle"
+
+
+            />-->
+           <!-- android:layout_marginLeft="20dp"
+            android:gravity="center"
+            android:lib_setRoundedView="true"
+            android:lib_setShape="oval"
+            android:lib_setStrokeWidth="0dp"/>-->
         <!--  <TextView
               android:id="@+id/txtFirstCharecter"
               android:layout_width="50dp"

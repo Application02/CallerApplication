@@ -11,7 +11,7 @@
         android:id="@+id/backgroundincoming"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/back6">
+        android:background="@drawable/back1">
 
         <TextView
             android:id="@+id/txtName"
