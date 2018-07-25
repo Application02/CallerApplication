@@ -97,7 +97,7 @@ public class RecentCallCustomAdapter extends BaseAdapter {
         }
 
         Bitmap photo = BitmapFactory.decodeResource(context.getResources(),
-                R.drawable.back6);
+                R.drawable.contactimg);
 
         try {
             InputStream inputStream = ContactsContract.Contacts.openContactPhotoInputStream(context.getContentResolver(),

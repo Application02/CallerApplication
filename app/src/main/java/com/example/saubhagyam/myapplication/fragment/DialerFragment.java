@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +13,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,22 +23,40 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.saubhagyam.myapplication.R;
+import com.example.saubhagyam.myapplication.javaclass.CustomTypefaceSpan;
 import com.example.saubhagyam.myapplication.util.Config;
 
 
 public class DialerFragment extends Fragment implements View.OnClickListener {
     EditText edtPhoneNo;
     View mView;
-    Button btnOne, btnTwo, btnThree, btnFour, btnFive, btnSix, btnSeven, btnEight, btnNine, btnZero, btnHash, btnAterisk;
+    LinearLayout btnOne, btnTwo, btnThree, btnFour, btnFive, btnSix, btnSeven, btnEight, btnNine, btnZero, btnHash, btnAterisk;
     ImageView btnCall, btnDel;
+/*     String s1="1";
+       String s2="abc"; */
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.activity_dialer, container, false);
         initiliazation();
+
+/*//code for show button with two text
+
+        int n = s1.length();
+        int m = s2.length();
+
+        AssetManager assetManager = getContext().getAssets();
+       Typeface customFont = Typeface.createFromAsset(assetManager,"fonts/Segoe.ttf");
+        Spannable span = new SpannableString(s1 + "\n" +  s2);
+//Big font till you find `\n`
+        span.setSpan(new CustomTypefaceSpan("",customFont), 0, n, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//Small font from `\n` to the end
+        span.setSpan(new RelativeSizeSpan(0.8f), n, (n+m+1), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        btnOne.setText(span);*/
      return mView;
     }
 
@@ -47,34 +70,41 @@ public class DialerFragment extends Fragment implements View.OnClickListener {
     private void initiliazation() {
         getActivity().setTitle("Dialer");
         edtPhoneNo = (EditText) mView.findViewById(R.id.edtPhoneNumber);
-        btnOne = (Button) mView.findViewById(R.id.btnOne);
+        btnOne = (LinearLayout ) mView.findViewById(R.id.btnOne);
         btnOne.setOnClickListener(this);
-        btnTwo = (Button) mView.findViewById(R.id.btnTwo);
+        btnTwo = (LinearLayout ) mView.findViewById(R.id.btnTwo);
         btnTwo.setOnClickListener(this);
-        btnThree = (Button) mView.findViewById(R.id.btnThree);
+        btnThree = (LinearLayout ) mView.findViewById(R.id.btnThree);
         btnThree.setOnClickListener(this);
-        btnFour = (Button) mView.findViewById(R.id.btnFour);
+        btnFour = (LinearLayout ) mView.findViewById(R.id.btnFour);
         btnFour.setOnClickListener(this);
-        btnFive = (Button) mView.findViewById(R.id.btnFive);
+        btnFive = (LinearLayout ) mView.findViewById(R.id.btnFive);
         btnFive.setOnClickListener(this);
-        btnSix = (Button) mView.findViewById(R.id.btnSix);
+        btnSix = (LinearLayout ) mView.findViewById(R.id.btnSix);
         btnSix.setOnClickListener(this);
-        btnSeven = (Button) mView.findViewById(R.id.btnSeven);
+        btnSeven = (LinearLayout ) mView.findViewById(R.id.btnSeven);
         btnSeven.setOnClickListener(this);
-        btnEight = (Button) mView.findViewById(R.id.btnEight);
+        btnEight = (LinearLayout ) mView.findViewById(R.id.btnEight);
         btnEight.setOnClickListener(this);
-        btnNine = (Button) mView.findViewById(R.id.btnNine);
+        btnNine = (LinearLayout ) mView.findViewById(R.id.btnNine);
         btnNine.setOnClickListener(this);
-        btnZero = (Button) mView.findViewById(R.id.btnZero);
+        btnZero = (LinearLayout ) mView.findViewById(R.id.btnZero);
         btnZero.setOnClickListener(this);
-        btnHash = (Button) mView.findViewById(R.id.btnHash);
+        btnHash = (LinearLayout ) mView.findViewById(R.id.btnHash);
         btnHash.setOnClickListener(this);
-        btnAterisk = (Button) mView.findViewById(R.id.btnAterisk);
+        btnAterisk = (LinearLayout ) mView.findViewById(R.id.btnAterisk);
         btnAterisk.setOnClickListener(this);
         btnCall = (ImageView) mView.findViewById(R.id.btnCall);
         btnCall.setOnClickListener(this);
         btnDel = (ImageView) mView.findViewById(R.id.btndel);
         btnDel.setOnClickListener(this);
+        btnDel.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                edtPhoneNo.setText("");
+                return false;
+            }
+        });
 
     }
 
