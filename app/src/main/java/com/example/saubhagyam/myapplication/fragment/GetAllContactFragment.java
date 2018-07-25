@@ -34,7 +34,8 @@ import android.widget.Toast;
 
 import com.example.saubhagyam.myapplication.R;
 import com.example.saubhagyam.myapplication.adepter.CustomAdapter;
-import com.example.saubhagyam.myapplication.adepter.ExampleAdapter;
+import com.example.saubhagyam.myapplication.adepter.GetContactAdapter;
+import com.example.saubhagyam.myapplication.adepter.GetContactAdapter;
 import com.example.saubhagyam.myapplication.database.DatabaseHelper;
 import com.example.saubhagyam.myapplication.model.ContactModel;
 import com.example.saubhagyam.myapplication.util.Config;
@@ -58,7 +59,7 @@ public class GetAllContactFragment extends Fragment {
     ProgressDialog mProgressDialog;
     //SearchView txtSearch;
     FastScrollRecyclerView recyclerView;
-    ExampleAdapter exampleAdapter;
+    GetContactAdapter exampleAdapter;
     SearchView searchView;
     TextView txtSetText;
     ContactModel contactModel;
@@ -265,7 +266,7 @@ public class GetAllContactFragment extends Fragment {
         }
 */
        // getFragmentManager().beginTransaction().detach(GetAllContactFragment.this).attach(GetAllContactFragment.this).commit();
-        exampleAdapter = new ExampleAdapter(getActivity(), contactModelArrayList);
+        exampleAdapter = new GetContactAdapter(getActivity(), contactModelArrayList);
         recyclerView.setAdapter(exampleAdapter);
 
     }

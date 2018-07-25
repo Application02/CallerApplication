@@ -7,6 +7,7 @@ public class RecentCallModel {
     private String time;
     private String calltype;
     private String callduration;
+    private  String uri;
 
     public String getTime() {
         return time;
@@ -46,5 +47,13 @@ public class RecentCallModel {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 }

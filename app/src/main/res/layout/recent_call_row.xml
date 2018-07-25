@@ -12,7 +12,8 @@
         android:orientation="horizontal">
 
         <com.libRG.CustomTextView
-            android:id="@+id/txtFirstCharecter"
+            android:visibility="visible"
+            android:id="@+id/txtFirstCharecter1"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
@@ -24,6 +25,16 @@
             app:lib_setRoundedView="true"
             app:lib_setShape="oval"
             app:lib_setStrokeWidth="0dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:visibility="gone"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/imageview2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:civ_border_width="0.01dp"
+            app:civ_border_color="#FF000000"/>
 
         <LinearLayout
             android:layout_width="match_parent"
