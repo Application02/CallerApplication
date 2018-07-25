@@ -32,7 +32,7 @@ public class RecentsFragment extends Fragment {
     private RecentCallCustomAdapter callCustomAdapter;
     private ArrayList<RecentCallModel> recentCallModels;
     private ListView mListViewRecentCall;
-
+    String uri;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class RecentsFragment extends Fragment {
         while (cursor.moveToNext()) {
             String Name = cursor.getString(cursor.getColumnIndex(CallLog.Calls.CACHED_NAME));
             String Number = cursor.getString(cursor.getColumnIndex(CallLog.Calls.CACHED_FORMATTED_NUMBER));
-            String uri = cursor.getString(cursor.getColumnIndex(CallLog.Calls.CACHED_PHOTO_URI));
+             uri = cursor.getString(cursor.getColumnIndex(CallLog.Calls.CACHED_PHOTO_URI));
             int date = cursor.getColumnIndex(CallLog.Calls.DATE);
             int CallType = cursor.getColumnIndex(CallLog.Calls.TYPE);
             int duration = cursor.getColumnIndex(CallLog.Calls.DURATION);
@@ -94,6 +94,9 @@ public class RecentsFragment extends Fragment {
             recentCallModel.setTime(mMonthAndDay + " " + mTime);
             recentCallModel.setCallduration(formattedTime);
             recentCallModel.setUri(uri);
+
+
+            Log.d(TAG, "getView In Fragment: " + recentCallModel.getUri());
 
             String dir = null;
             int dircode = Integer.parseInt(callType);

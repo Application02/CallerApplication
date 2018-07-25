@@ -105,10 +105,11 @@ public class RecentCallCustomAdapter extends BaseAdapter {
 
             if (inputStream != null) {
                 photo = BitmapFactory.decodeStream(inputStream);
+                inputStream.close();
             }
 
             assert inputStream != null;
-            inputStream.close();
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -174,18 +175,25 @@ public class RecentCallCustomAdapter extends BaseAdapter {
         Log.d(TAG, "getView In Adaper: "+contactModelArrayList.get(position).getUri());
 
 
-        if (contactModelArrayList.get(position).getUri() != null) {
+        if (contactModelArrayList.get(position).getUri() == null) {
+
+
+            holder.txtFirstChar.setVisibility(View.VISIBLE);
+            holder.imageView2.setVisibility(View.GONE);
+            if (contactModelArrayList.get(position).getName() != null)
+            {
+                holder.txtFirstChar.setText((contactModelArrayList.get(position).getName().toUpperCase().charAt(0) + ""));
+            }
+
+
+
+        } else {
             retrieveContactPhoto(context, contactModelArrayList.get(position).getNumber());
 
             holder.txtFirstChar.setVisibility(View.GONE);
 
             holder.imageView2.setVisibility(View.VISIBLE);
             holder.imageView2.setImageDrawable(ob);
-
-        } else {
-            holder.txtFirstChar.setVisibility(View.VISIBLE);
-            holder.imageView2.setVisibility(View.GONE);
-          //  holder.txtFirstChar.setText((contactModelArrayList.get(position).getName().toUpperCase().charAt(0) + ""));
         }
 
 
