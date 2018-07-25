@@ -161,8 +161,13 @@ public class GetAllContactFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.e(TAG, "onQueryTextSubmit: ");
-                filter(query);
+
+        if (searchView!=null)
+        {
+            Log.e(TAG, "onQueryTextSubmit: ");
+            filter(query);
+        }
+
                 return true;
             }
 
@@ -270,6 +275,8 @@ public class GetAllContactFragment extends Fragment {
         recyclerView.setAdapter(exampleAdapter);
 
     }
+
+
 
 
 
