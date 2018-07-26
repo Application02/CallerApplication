@@ -157,49 +157,21 @@ public class GetAllContactFragment extends Fragment {
 
         MenuItem menuItem = menu.findItem(R.id.action_search);
         searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-        Log.e(TAG, "onCreateOptionsMenu: ");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
 
-        if (searchView!=null)
-        {
-            Log.e(TAG, "onQueryTextSubmit: ");
-            filter(query);
-        }
+       search(searchView);
 
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                Log.e(TAG, "onQueryTextChange: ");
-                filter(newText);
-                return true;
-            }
-        });
 
     }
 
-    private void filter(String s) {
-        try
-        {
-            ArrayList<ContactModel> temp = new ArrayList();
-            for (ContactModel d : contactModelArrayList) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-                if (d.getName().contains(s)) {
-                    temp.add(d);
-
-                }
-            }
-            exampleAdapter.updateList(temp);
-
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
+        return super.onOptionsItemSelected(item);
     }
+
+
+
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.ECLAIR)
@@ -252,32 +224,29 @@ public class GetAllContactFragment extends Fragment {
         }
 
 
-        //method call for image get
-       // exampleAdapter.retrieveContactPhoto(getActivity(),phoneNumber);
-
-     /*   for (int i=0 ; i <contactModelArrayList.size(); i++)
-        {
-            if (contactModel.getUri() != null)
-            {
-
-                Toast.makeText(getActivity(), "IF", Toast.LENGTH_SHORT).show();
-              //  imageView.setVisibility(View.VISIBLE);
-            }
-            else
-            {
-                Toast.makeText(getActivity(), "ELSE", Toast.LENGTH_SHORT).show();
-              //  imageView.setVisibility(View.INVISIBLE);
-            }
-        }
-*/
-       // getFragmentManager().beginTransaction().detach(GetAllContactFragment.this).attach(GetAllContactFragment.this).commit();
         exampleAdapter = new GetContactAdapter(getActivity(), contactModelArrayList);
         recyclerView.setAdapter(exampleAdapter);
 
     }
 
 
+    private void search(SearchView searchView) {
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                exampleAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+    }
 
 
 }

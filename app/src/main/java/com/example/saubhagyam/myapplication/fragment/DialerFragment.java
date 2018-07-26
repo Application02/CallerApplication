@@ -12,9 +12,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
 import android.text.InputType;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextWatcher;
 import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -103,6 +105,31 @@ public class DialerFragment extends Fragment implements View.OnClickListener {
             public boolean onLongClick(View view) {
                 edtPhoneNo.setText("");
                 return false;
+            }
+        });
+
+        edtPhoneNo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if(charSequence.toString().trim().length()==0){
+                   // btnDel.setEnabled(false);
+                    btnDel.setVisibility(View.GONE);
+                } else {
+                    //btnDel.setEnabled(true);
+                    btnDel.setVisibility(View.VISIBLE);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 

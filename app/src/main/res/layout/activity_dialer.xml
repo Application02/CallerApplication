@@ -8,6 +8,7 @@
     android:weightSum="10">
 
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -21,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginRight="45dp"
+            android:layout_marginLeft="45dp"
             android:background="#fff"
             android:clickable="true"
             android:singleLine="true"
@@ -31,6 +33,7 @@
 
         <ImageView
             android:id="@+id/btndel"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -64,7 +67,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
+
+                android:textColor="#000"
                 android:text="1"/>
+            <!--android:textStyle="bold"-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -115,6 +121,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
+
+                android:textColor="#000"
                 android:text="2"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -157,6 +165,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
+
+                android:textColor="#000"
                 android:text="3"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -208,6 +218,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
+
+                android:textColor="#000"
                 android:text="4"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -244,6 +256,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
+
+                android:textColor="#000"
                 android:text="5"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -285,6 +299,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
+
+                android:textColor="#000"
                 android:text="6"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -336,6 +352,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
+
+                android:textColor="#000"
                 android:text="7"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -372,6 +390,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
+
+                android:textColor="#000"
                 android:text="8"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -414,6 +434,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
+
+                android:textColor="#000"
                 android:text="9"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -464,6 +486,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="40sp"
+
+                android:textColor="#000"
                 android:text="*"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -500,6 +524,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
+
+                android:textColor="#000"
                 android:text="0"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -543,6 +569,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"
+
+                android:textColor="#000"
                 android:text="#"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -556,7 +584,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="17dp">
 
         <ImageView
             android:id="@+id/btnCall"
