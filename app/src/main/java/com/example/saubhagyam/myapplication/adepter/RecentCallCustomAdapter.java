@@ -147,23 +147,12 @@ public class RecentCallCustomAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String callInfo = "tel:" + contactModelArrayList.get(position).getNumber();
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(callInfo));
-                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
 
-                    return;
-                }
-                context.startActivity(callIntent);
-
-            }
-        });
         holder.txtCallTimeDuration.setText(contactModelArrayList.get(position).getCallduration());
         holder.txtTime.setText(contactModelArrayList.get(position).getTime());
         holder.txtNumber.setText(contactModelArrayList.get(position).getNumber());
+
+       // System.out.println("SetValue=>"+holder.txtNumber.getText().toString());
         holder.txtName.setText(contactModelArrayList.get(position).getName());
 
         if (contactModelArrayList.get(position).getName()!=null)
@@ -235,6 +224,26 @@ public class RecentCallCustomAdapter extends BaseAdapter {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String callInfo = "tel:" + contactModelArrayList.get(position).getNumber();
+
+                System.out.println("Recent Number"+contactModelArrayList.get(position).getNumber());
+
+
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse(callInfo));
+                if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+                    return;
+                }
+                context.startActivity(callIntent);
+
+            }
+        });
 
 
         return convertView;

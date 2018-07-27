@@ -102,6 +102,10 @@ public class DialCallActivity extends AppCompatActivity implements View.OnClickL
         relativeLayout1 = findViewById(R.id.backgroundoutgoing);
 
         imageView = findViewById(R.id.imageView);
+
+
+
+
         //code for timer
         chronometer = findViewById(R.id.chronometer);
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {

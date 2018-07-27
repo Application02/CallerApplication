@@ -15,8 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.saubhagyam.myapplication.R;
+import com.example.saubhagyam.myapplication.activity.MainActivity;
 import com.example.saubhagyam.myapplication.adepter.RecentCallCustomAdapter;
 import com.example.saubhagyam.myapplication.model.RecentCallModel;
 import com.example.saubhagyam.myapplication.util.Config;
@@ -38,6 +40,8 @@ public class RecentsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.recents_fragment, container, false);
         initilization();
+
+
         return mView;
     }
 

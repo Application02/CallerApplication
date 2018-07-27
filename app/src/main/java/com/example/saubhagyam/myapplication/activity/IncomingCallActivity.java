@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.example.saubhagyam.myapplication.R;
 import com.example.saubhagyam.myapplication.database.DatabaseHelper;
 import com.example.saubhagyam.myapplication.database.Note;
+import com.example.saubhagyam.myapplication.fragment.RecentsFragment;
 import com.example.saubhagyam.myapplication.model.ContactModel;
 
 import java.io.DataOutputStream;
@@ -86,6 +87,9 @@ public class IncomingCallActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incoming_call);
         relativeLayout = findViewById(R.id.backgroundincoming);
+
+
+
 
         sharedpreferences = getApplicationContext().getSharedPreferences(mypreference,
                 Context.MODE_PRIVATE);
